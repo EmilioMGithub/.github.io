@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="Styles/gamestyle.css">
+</head>
+<body>
+	<div id="navBar">
+		<a href="index.html">Home<a>
+	</div>
+	<div id="content">
+		<h1>Welcome To Emilio's Games</h1>
+		<div id="wordFinder">
+			<form>
+                <div id="wordDisplayDiv">
+                    <input type="text" name="" id="wordDisplay" readonly>
+                    <input type="button" id="wordRoundDisplay" value="5" onClick = "restart()">
+                </div>
+                <div>
+                    <input type="button" value="A" onclick="keyClick('A')">
+                    <input type="button" value="B" onclick="keyClick('B')">
+                    <input type="button" value="C" onclick="keyClick('C')">
+                    <input type="button" value="D" onclick="keyClick('D')">
+                    <input type="button" value="E" onclick="keyClick('E')">
+                    <input type="button" value="F" onclick="keyClick('F')">
+                    <input type="button" value="G" onclick="keyClick('G')">
+                    <input type="button" value="H" onclick="keyClick('H')">
+                    <input type="button" value="I" onclick="keyClick('I')">
+                </div>
+                <div>
+                    <input type="button" value="J" onclick="keyClick('J')">
+                    <input type="button" value="K" onclick="keyClick('K')">
+                    <input type="button" value="L" onclick="keyClick('L')">
+                    <input type="button" value="M" onclick="keyClick('M')">
+                    <input type="button" value="N" onclick="keyClick('N')">
+                    <input type="button" value="O" onclick="keyClick('O')">
+                    <input type="button" value="P" onclick="keyClick('P')">
+                    <input type="button" value="Q" onclick="keyClick('Q')">
+                </div>
+                <div>
+                    <input type="button" value="R" onclick="keyClick('R')">
+                    <input type="button" value="S" onclick="keyClick('S')">
+                    <input type="button" value="T" onclick="keyClick('T')">
+                    <input type="button" value="U" onclick="keyClick('U')">
+                    <input type="button" value="V" onclick="keyClick('V')">
+                    <input type="button" value="W" onclick="keyClick('W')">
+                    <input type="button" value="X" onclick="keyClick('X')">
+                    <input type="button" value="Y" onclick="keyClick('Y')">
+                    <input type="button" value="Z" onclick="keyClick('Z')">
+                </div>
+        	</form>
+		</div>
+		<script type="text/javascript">
+			//Word Finder Script
+			let wordRoundDisplay = document.getElementById("wordRoundDisplay");
+			let wordDisplay = document.getElementById("wordDisplay");
+			const wordFinderWords = ["apple","brave","candy","dairy","early","fairy","giant","happy","jolly","kings",
+				"lucky","magic","noble","oasis","party","quick","raise","sunny","table","unity","vivid",
+				"waltz","xerox","young","zebra","beach","cloud","dream","earth","faith","green","honor",
+				"image","juice","kitty","laser","mango","never","ocean","peace","quiet","river","salsa",
+				"tiger","umbra","vocal","water","xenon","yacht","zesty"]
+			
+			let chosenWord;
+			let guessWord;
+
+			function wordFinderSetup(){
+				chosenWord = wordFinderWords[Math.ceil(Math.random()*wordFinderWords.length-1)].toUpperCase();
+				guessWord = "";
+				for(let i = 0; i < chosenWord.length; i++){
+					guessWord += "-";
+				}
+				wordDisplay.value = guessWord;
+				wordRoundDisplay.value = 5;
+			}
+
+			function keyClick(letter){
+				newGuessedWord = "";
+				if(wordRoundDisplay.value != "R"){
+					let guessedLetter = false;
+					for(let i = 0; i < chosenWord.length; i++){
+						if(guessWord[i] == "-"){
+							if(letter == chosenWord[i]){
+								newGuessedWord+=letter;
+								guessedLetter = true;
+							} else {
+								newGuessedWord+="-"
+							}
+						} else {
+							newGuessedWord += guessWord[i];
+						}
+					}
+
+					if(!guessedLetter){
+						wordRoundDisplay.value -= 1;
+					}
+
+					if(wordRoundDisplay.value == 0){
+						wordRoundDisplay.value = "R";
+						wordDisplay.value = "Game Over, Word: " + chosenWord.charAt(0).toUpperCase() + chosenWord.slice(1).toLowerCase();
+					}
+
+				}
+
+				guessWord = newGuessedWord;
+
+				if(guessWord == chosenWord){
+					wordDisplay.value =  guessWord.charAt(0).toUpperCase() + guessWord.slice(1).toLowerCase()+ ", Correct";
+				} else {
+					wordDisplay.value = guessWord.charAt(0).toUpperCase() + guessWord.slice(1).toLowerCase();
+				}
+
+				if(wordRoundDisplay.value == "R"){
+					wordDisplay.value = "Game Over the word was, " + chosenWord.charAt(0).toUpperCase() + chosenWord.slice(1).toLowerCase();
+				}
+			}
+			
+			window.onload= function(){
+				wordFinderSetup();
+			}
+
+			function restart(){
+				wordFinderSetup();
+			}
+
+		</script>
+	<body>
+</html>

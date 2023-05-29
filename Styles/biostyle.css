@@ -1,0 +1,27 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'poppins';
+}
+
+#navBar{
+    width:100vw;
+    height:30px;
+    background:darkseagreen;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+#navBar a{
+	margin: 6px;
+	color: darkblue;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#content{
+	height: calc(100vh - 30px) !important;
+	width: 100vw;
+	background: floralwhite;
+}
