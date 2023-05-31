@@ -12,6 +12,7 @@
 	</div>
 	<div id="content">
 		<h1>Welcome To Emilio's Games</h1>
+		<div id="MetaWordFindeer">
 		<div id="wordFinder">
 			<form>
                 <div id="wordDisplayDiv">
@@ -52,6 +53,10 @@
                 </div>
         	</form>
 		</div>
+		<div id="explain">
+			<p>Guess a letter in the ? word. If you guess the letter correctly it will show. If you guess wrong then you lose a round. If you lose all rounds then the game is over. If you guess the word you win. The round display is also the restart button</p>
+		</div>
+		</div>
 		<div id="coinFlipper">
 			<input type="text" value="Heads: " class="coinDis" id="headDis" readonly>
 			<input type="text" value="Tails: " class="coinDis" id="tailDis" readonly>
@@ -85,6 +90,7 @@
 		}
 
 		function keyClick(letter){
+			document.getElement(letter)
 			newGuessedWord = "";
 			if(wordRoundDisplay.value != "R"){
 				let guessedLetter = false;
@@ -198,3 +204,4 @@
 		}
 	</script>
 </html>
+
