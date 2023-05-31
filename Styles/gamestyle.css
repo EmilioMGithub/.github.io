@@ -68,6 +68,12 @@
 	text-align: center;
 }
 
+#MetaWordFindeer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 #coinFlipper{
 	background: darkseagreen;
 	padding: 10px;
@@ -88,5 +94,14 @@
 	width: 120px;
 	text-align: center;
 	color:darkblue;
+	font-weight: bold;
+}
+
+#explain{
+	margin: 5px;
+	margin-top: 20px;
+	text-align: center;
+	width: 200px;
+	font-size: 13px;
 	font-weight: bold;
 }
