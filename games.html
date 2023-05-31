@@ -52,78 +52,149 @@
                 </div>
         	</form>
 		</div>
-		<script type="text/javascript">
-			//Word Finder Script
-			let wordRoundDisplay = document.getElementById("wordRoundDisplay");
-			let wordDisplay = document.getElementById("wordDisplay");
-			const wordFinderWords = ["apple","brave","candy","dairy","early","fairy","giant","happy","jolly","kings",
-				"lucky","magic","noble","oasis","party","quick","raise","sunny","table","unity","vivid",
-				"waltz","young","zebra","beach","cloud","dream","earth","faith","green","honor",
-				"image","juice","laser","mango","never","ocean","peace","quiet","river","salsa",
-				"tiger","umbra","vocal","water","xenon","yacht","crabs"]
-			
-			let chosenWord;
-			let guessWord;
-
-			function wordFinderSetup(){
-				chosenWord = wordFinderWords[Math.ceil(Math.random()*wordFinderWords.length-1)].toUpperCase();
-				guessWord = "";
-				for(let i = 0; i < chosenWord.length; i++){
-					guessWord += "-";
-				}
-				wordDisplay.value = guessWord;
-				wordRoundDisplay.value = 5;
-			}
-
-			function keyClick(letter){
-				newGuessedWord = "";
-				if(wordRoundDisplay.value != "R"){
-					let guessedLetter = false;
-					for(let i = 0; i < chosenWord.length; i++){
-						if(guessWord[i] == "-"){
-							if(letter == chosenWord[i]){
-								newGuessedWord+=letter;
-								guessedLetter = true;
-							} else {
-								newGuessedWord+="-"
-							}
-						} else {
-							newGuessedWord += guessWord[i];
-						}
-					}
-
-					if(!guessedLetter){
-						wordRoundDisplay.value -= 1;
-					}
-
-					if(wordRoundDisplay.value == 0){
-						wordRoundDisplay.value = "R";
-						wordDisplay.value = "Game Over, Word: " + chosenWord.charAt(0).toUpperCase() + chosenWord.slice(1).toLowerCase();
-					}
-
-				}
-
-				guessWord = newGuessedWord;
-
-				if(guessWord == chosenWord){
-					wordDisplay.value =  guessWord.charAt(0).toUpperCase() + guessWord.slice(1).toLowerCase()+ ", Correct";
-				} else {
-					wordDisplay.value = guessWord.charAt(0).toUpperCase() + guessWord.slice(1).toLowerCase();
-				}
-
-				if(wordRoundDisplay.value == "R"){
-					wordDisplay.value = "Game Over the word was, " + chosenWord.charAt(0).toUpperCase() + chosenWord.slice(1).toLowerCase();
-				}
-			}
-			
-			window.onload= function(){
-				wordFinderSetup();
-			}
-
-			function restart(){
-				wordFinderSetup();
-			}
-
-		</script>
+		<div id="coinFlipper">
+			<input type="text" value="Heads: " class="coinDis" id="headDis">
+			<input type="text" value="Tails: " class="coinDis" id="tailDis">
+			<input type="text" value="Heads Streak: " class="coinDis" id="headStreak">
+			<input type="text" value="Tails Streak:" class="coinDis" id="tailStreak">
+			<input type="button" value="Flip A Coin"  class="coinDis" onclick="coinClick()">
+			<input type="number" placeholder="1" class="coinDis" id="numFlip">
+		</div>
 	<body>
+	<script type="text/javascript">
+		//Word Finder Script
+		let wordRoundDisplay = document.getElementById("wordRoundDisplay");
+		let wordDisplay = document.getElementById("wordDisplay");
+		const wordFinderWords = ["apple","brave","candy","dairy","early","fairy","giant","happy","jolly","kings",
+			"lucky","magic","noble","oasis","party","quick","raise","sunny","table","unity","vivid",
+			"waltz","xerox","young","zebra","beach","cloud","dream","earth","faith","green","honor",
+			"image","juice","kitty","laser","mango","never","ocean","peace","quiet","river","salsa",
+			"tiger","umbra","vocal","water","xenon","yacht","zesty"]
+		
+		let chosenWord;
+		let guessWord;
+
+		function wordFinderSetup(){
+			chosenWord = wordFinderWords[Math.ceil(Math.random()*wordFinderWords.length-1)].toUpperCase();
+			guessWord = "";
+			for(let i = 0; i < chosenWord.length; i++){
+				guessWord += "-";
+			}
+			wordDisplay.value = guessWord;
+			wordRoundDisplay.value = 5;
+		}
+
+		function keyClick(letter){
+			newGuessedWord = "";
+			if(wordRoundDisplay.value != "R"){
+				let guessedLetter = false;
+				for(let i = 0; i < chosenWord.length; i++){
+					if(guessWord[i] == "-"){
+						if(letter == chosenWord[i]){
+							newGuessedWord+=letter;
+							guessedLetter = true;
+						} else {
+							newGuessedWord+="-"
+						}
+					} else {
+						newGuessedWord += guessWord[i];
+					}
+				}
+
+				if(!guessedLetter){
+					wordRoundDisplay.value -= 1;
+				}
+
+				if(wordRoundDisplay.value == 0){
+					wordRoundDisplay.value = "R";
+					wordDisplay.value = "Game Over, Word: " + chosenWord.charAt(0).toUpperCase() + chosenWord.slice(1).toLowerCase();
+				}
+
+			}
+
+			guessWord = newGuessedWord;
+
+			if(guessWord == chosenWord){
+				wordDisplay.value =  guessWord.charAt(0).toUpperCase() + guessWord.slice(1).toLowerCase()+ ", Correct";
+			} else {
+				wordDisplay.value = guessWord.charAt(0).toUpperCase() + guessWord.slice(1).toLowerCase();
+			}
+
+			if(wordRoundDisplay.value == "R"){
+				wordDisplay.value = "Game Over the word was, " + chosenWord.charAt(0).toUpperCase() + chosenWord.slice(1).toLowerCase();
+			}
+		}
+		
+		window.onload= function(){
+			wordFinderSetup();
+		}
+
+		function restart(){
+			wordFinderSetup();
+		}
+
+		//Coin Clicks
+		var clickArr = [];
+
+		function coinClick(){
+			var coinFlips = Math.abs(document.getElementById("numFlip").value);
+
+			for(var x = 0; x<coinFlips; x++){
+				if(Math.random() < 0.5){
+					clickArr.push("heads");
+				} else {
+					clickArr.push("tails")
+				}
+			}
+
+			var heads = 0;
+			var tails = 0;
+
+			for(var i = 0; i<clickArr.length; i++){
+				if(clickArr[i] == "heads"){
+					heads += 1;
+				} else {
+					tails += 1;
+				}
+			}
+			
+			var headDis = document.getElementById("headDis");
+			headDis.value = "Heads: "+heads;
+
+			var tailDis = document.getElementById("tailDis");
+			tailDis.value = "Tails: "+tails;
+
+			var headStreak = 0;
+			var holder = 0;
+			for(var i = 0; i<clickArr.length; i++){
+				if(clickArr[i] == "heads"){
+					holder += 1;
+					if(holder > headStreak){
+						headStreak = holder;
+					}
+				} else {
+					holder = 0;
+				}
+			}
+
+			var tailStreak = 0;
+			var holder = 0;
+			for(var i = 0; i<clickArr.length; i++){
+				if(clickArr[i] == "tails"){
+					holder += 1;
+					if(holder > tailStreak){
+						tailStreak = holder;
+					}
+				} else {
+					holder = 0;
+				}
+			}
+
+			var headStreakDis = document.getElementById("headStreak");
+			headStreakDis.value = "Head Streak: "+headStreak;
+
+			var tailStreakDis = document.getElementById("tailStreak");
+			tailStreakDis.value = "Tails Streak: "+tailStreak;
+		}
+	</script>
 </html>
