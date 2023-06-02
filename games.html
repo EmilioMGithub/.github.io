@@ -17,7 +17,7 @@
 			<form>
                 <div id="wordDisplayDiv">
                     <input type="text" name="" id="wordDisplay" readonly>
-                    <input type="button" id="wordRoundDisplay" value="5" onClick = "restart()">
+                    <input type="button" id="wordRoundDisplay" value="8" onClick = "restart()">
                 </div>
                 <div>
                     <input type="button" value="A" onclick="keyClick('A')">
@@ -86,7 +86,7 @@
 				guessWord += "-";
 			}
 			wordDisplay.value = guessWord;
-			wordRoundDisplay.value = 5;
+			wordRoundDisplay.value = 8;
 		}
 
 		function keyClick(letter){
