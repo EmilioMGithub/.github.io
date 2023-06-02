@@ -63,7 +63,6 @@
 			<input type="text" value="Heads Streak: " class="coinDis" id="headStreak" readonly>
 			<input type="text" value="Tails Streak:" class="coinDis" id="tailStreak" readonly>
 			<input type="button" value="Flip A Coin"  class="coinDis" onclick="coinClick()">
-			<input type="number" value="1" class="coinDis" id="numFlip">
 		</div>
 	<body>
 	<script type="text/javascript">
@@ -142,14 +141,10 @@
 		var clickArr = [];
 
 		function coinClick(){
-			var coinFlips = Math.abs(document.getElementById("numFlip").value);
-
-			for(var x = 0; x<coinFlips; x++){
-				if(Math.random() < 0.5){
-					clickArr.push("heads");
-				} else {
-					clickArr.push("tails")
-				}
+			if(Math.random() < 0.5){
+				clickArr.push("heads");
+			} else {
+				clickArr.push("tails")
 			}
 
 			var heads = 0;
